@@ -10,7 +10,7 @@ import java.io.OutputStream;
 /**
  * Created by balkh on 03.11.2016.
  */
-public class TradeDownloaderFromFTP implements TradeDownloader {
+public class DownloaderFromFTP implements Downloader {
     public String downloadFile() {
         FTPClient ftpClient = new FTPClient();
         try {

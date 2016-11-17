@@ -2,25 +2,20 @@ package ru.sbt.bit.ood.hw1;
 
 public class TradesJob {
 
-    private final TradesDAO tradesDAO;
-    private final TradeDownloader tradeDownloader;
-    private final TradeParser tradeParser;
-    public TradesJob(TradesDAO tradesDAO, TradeDownloader tradeDownloader, TradeParser tradeParser) {
-        this.tradesDAO = tradesDAO;
-        this.tradeDownloader = tradeDownloader;
-        this.tradeParser = tradeParser;
+    private final Downloader downloader;
+    private final Parser parser;
+    private final Updater updater;
+
+    public TradesJob(Downloader downloader, Parser parser, Updater updater) {
+        this.downloader = downloader;
+        this.parser = parser;
+        this.updater = updater;
     }
 
     public void run() {
-        String filename = tradeDownloader.downloadFile();
-        Iterable<Trade> trades = tradeParser.parse(filename);
-        updateTrades(trades);
+        String filename = downloader.downloadFile();
+        Iterable<Trade> trades = parser.parse(filename);
+    //    updater.updateTrades(trades);
     }
 
-    private void updateTrades(Iterable<Trade> trades) {
-        tradesDAO.deleteAll();
-        for (Trade trade : trades) {
-            tradesDAO.save(trade);
-        }
-    }
 }

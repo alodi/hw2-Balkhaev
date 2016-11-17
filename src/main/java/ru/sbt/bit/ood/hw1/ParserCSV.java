@@ -1,7 +1,6 @@
 package ru.sbt.bit.ood.hw1;
 
 import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
 import java.io.FileReader;
@@ -13,7 +12,7 @@ import java.util.List;
 /**
  * Created by balkh on 03.11.2016.
  */
-public class TradeParserCSV implements TradeParser {
+public class ParserCSV implements Parser {
     public Iterable<Trade> parse(String filename) {
         try {
             Reader in = new FileReader(filename);
